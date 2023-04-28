@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Chart from "react-apexcharts";
 
 function App() {
+  const [options] = useState({
+    chart: {
+      id: "apexchart-example",
+    },
+    xaxis: {
+      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+    },
+  });
+
+  const [series] = useState([
+    {
+      name: "series-1",
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+    },
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Chart
+        options={options}
+        series={series}
+        type="line"
+        width={500}
+        height={320}
+      />
     </div>
   );
 }
